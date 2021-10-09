@@ -15,8 +15,18 @@ public class ClickToMove : MonoBehaviour {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray.origin, ray.direction, out hitInfo))
             {
-                Debug.Log(hitInfo.collider.gameObject, hitInfo.collider.gameObject);
-                agent.destination = hitInfo.point;
+                Chest chest = hitInfo.transform.GetComponent<Chest>();
+
+                if (chest != null)
+                {
+                    agent.destination = hitInfo.collider.gameObject.transform.position + hitInfo.collider.gameObject.transform.forward;
+                    chest.Open();
+                }
+                else 
+                {
+                    agent.destination = hitInfo.point;
+                }
+
             }
         }
     }
