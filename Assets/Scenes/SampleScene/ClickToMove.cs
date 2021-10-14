@@ -1,33 +1,70 @@
+using System;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent (typeof (NavMeshAgent))]
 public class ClickToMove : MonoBehaviour {
-    RaycastHit hitInfo = new RaycastHit();
-    NavMeshAgent agent;
+    private Player player;
+    private NavMeshAgent agent;
+    IObservable<RaycastHit> raycastHitStream;
+    public ReactiveProperty<Chest> openChest { get; private set; } = new ReactiveProperty<Chest>(null);
 
     void Start () {
-        agent = GetComponent<NavMeshAgent> ();
-    }
-    void Update () {
-        if(Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo))
+        player = SceneManager.Instance.player;
+        agent = player.agent;
+
+        raycastHitStream = this.UpdateAsObservable()
+            .Where(_ => Input.GetMouseButtonDown(0))
+            .Select<Unit, Ray>(_ => Camera.main.ScreenPointToRay(Input.mousePosition))
+            .Where((Ray ray) => Physics.Raycast(ray.origin, ray.direction))
+            .Select<Ray, RaycastHit>((Ray ray) =>
             {
-                Chest chest = hitInfo.transform.GetComponent<Chest>();
+                RaycastHit hit = new RaycastHit();
+
+                Physics.Raycast(ray.origin, ray.direction, out hit);
+
+                return hit;
+            });
+
+        raycastHitStream
+            .Subscribe((RaycastHit hit) => 
+            {
+
+                Chest chest = hit.transform.GetComponent<Chest>();
 
                 if (chest != null)
                 {
-                    agent.destination = hitInfo.collider.gameObject.transform.position + hitInfo.collider.gameObject.transform.forward;
-                    chest.Open();
-                }
-                else 
-                {
-                    agent.destination = hitInfo.point;
-                }
+                    Vector3 newDest = hit.collider.gameObject.transform.position + hit.collider.gameObject.transform.forward * 5.5f;
+                    newDest.y = agent.destination.y;
 
-            }
-        }
+                    if (agent.destination != newDest)
+                    {
+                        agent.destination = newDest;
+                        openChest.Value = chest;
+                    }
+                    else 
+                    {
+                        chest.Open();
+                    }
+                }
+                else
+                {
+                    openChest.Value = null;
+                    agent.destination = hit.point;
+                }
+            });
+
+        player.navComplete()
+            .Select(_ => openChest.Value)
+            .Where((Chest chest) => chest != null)
+            .Subscribe((Chest chest) =>
+            {
+                chest.Open();
+            });
+    }
+    void Update () {
+
     }
 }
