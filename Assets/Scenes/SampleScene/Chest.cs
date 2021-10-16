@@ -5,24 +5,39 @@ using System.Threading;
 
 public class Chest : MonoBehaviour {
 
-    public GameObject itemIcon;
-    public GameObject chestPanel;
+    public GameObject ChestPanel;
+    private Transform Container;
+    private Item[] ItemList;
 
     void Start()
     {
+        Container = ChestPanel.transform.Find("Panel");
+
         int count = Random.Range(1, 6);
+        ItemList = new Item[count];
 
-        Transform panel = chestPanel.transform.Find("Panel");
-
-        for (int i = 0; i <= count; i++)
+        for (int i = 0; i < count; i++)
         {
-            Instantiate(itemIcon, panel);
+            ItemList[i] = ItemsManager.Instance.GenerateItem();
         }
     }
 
     public void Open()
     {
-        chestPanel.SetActive(true);
+        ClearContainer();
+        foreach (Item item in ItemList)
+        {
+            Instantiate(item.IconItem, Container);
+        }
+
+        ChestPanel.SetActive(true);
     }
 
+    private void ClearContainer()
+    {
+        foreach (Transform child in Container.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+    }
 }

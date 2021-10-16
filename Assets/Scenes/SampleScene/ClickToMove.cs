@@ -3,6 +3,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 [RequireComponent (typeof (NavMeshAgent))]
 public class ClickToMove : MonoBehaviour {
@@ -16,7 +17,7 @@ public class ClickToMove : MonoBehaviour {
         agent = player.agent;
 
         raycastHitStream = this.UpdateAsObservable()
-            .Where(_ => Input.GetMouseButtonDown(0))
+            .Where(_ => Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             .Select<Unit, Ray>(_ => Camera.main.ScreenPointToRay(Input.mousePosition))
             .Where((Ray ray) => Physics.Raycast(ray.origin, ray.direction))
             .Select<Ray, RaycastHit>((Ray ray) =>

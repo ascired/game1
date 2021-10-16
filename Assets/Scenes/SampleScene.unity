@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4482453, g: 0.49827206, b: 0.5755818, a: 1}
+  m_IndirectSpecularColor: {r: 0.4482448, g: 0.4982714, b: 0.575581, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 146025304}
   - component: {fileID: 146025303}
   m_Layer: 0
-  m_Name: Chest (2)
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -203,8 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098546e3edf45c247a42f0409dbd9ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 2866483220076681242, guid: e1523fca5f462c046a972b0c827eb270, type: 3}
-  chestPanel: {fileID: 1414124118}
+  ChestPanel: {fileID: 1414124118}
 --- !u!65 &146025305
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -358,6 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 438876927}
   - component: {fileID: 438876926}
+  - component: {fileID: 438876928}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -392,6 +392,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &438876928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438876925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6568ff82409e44cab6b3c51a89f2c3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 2866483220076681242, guid: e1523fca5f462c046a972b0c827eb270, type: 3}
 --- !u!1 &538343208
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +784,7 @@ GameObject:
   - component: {fileID: 842134764}
   - component: {fileID: 842134763}
   m_Layer: 0
-  m_Name: Chest (3)
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -805,8 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098546e3edf45c247a42f0409dbd9ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 2866483220076681242, guid: e1523fca5f462c046a972b0c827eb270, type: 3}
-  chestPanel: {fileID: 1414124118}
+  ChestPanel: {fileID: 1414124118}
 --- !u!65 &842134765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1905,7 +1917,7 @@ GameObject:
   - component: {fileID: 1592525386}
   - component: {fileID: 1592525387}
   m_Layer: 0
-  m_Name: Chest (1)
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -2000,8 +2012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098546e3edf45c247a42f0409dbd9ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 2866483220076681242, guid: e1523fca5f462c046a972b0c827eb270, type: 3}
-  chestPanel: {fileID: 1414124118}
+  ChestPanel: {fileID: 1414124118}
 --- !u!208 &1592525387
 NavMeshObstacle:
   m_ObjectHideFlags: 0
