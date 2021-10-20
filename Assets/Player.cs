@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
 
         return navCompleteSubject.AsObservable();
     }
+    void OnTriggerExit(Collider other)
+    {
+        // Debug.Log(other.transform.name);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +35,6 @@ public class Player : MonoBehaviour
             .Where(isFinishing => isFinishing)
             .Subscribe(x => navCompleteSubject.OnNext(Unit.Default));
 
-        navComplete()
-            .Subscribe(x => Debug.Log(x));
     }
 
     // Update is called once per frame

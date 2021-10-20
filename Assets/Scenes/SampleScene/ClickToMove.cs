@@ -32,31 +32,44 @@ public class ClickToMove : MonoBehaviour {
         raycastHitStream
             .Subscribe((RaycastHit hit) => 
             {
-
+                NavMeshHit meshHit;
                 Chest chest = hit.transform.GetComponent<Chest>();
 
-                if (chest != null)
-                {
-                    Vector3 newDest = hit.collider.gameObject.transform.position + hit.collider.gameObject.transform.forward * 5.5f;
-                    newDest.y = agent.destination.y;
-
-                    if (agent.destination != newDest)
-                    {
-                        agent.destination = newDest;
-                        openChest.Value = chest;
-                    }
-                    else 
-                    {
-                        chest.Open();
-                    }
-                }
-                else
+                // walkable area click
+                if (NavMesh.SamplePosition(hit.point, out meshHit, 0.5f, 1))
                 {
                     openChest.Value = null;
                     agent.destination = hit.point;
                 }
+                else // not walkable area click
+                {
+                    // chest click
+                    if (chest != null)
+                    {
+                        Vector3 newDest = 
+                        hit.collider.gameObject.transform.position 
+                        + Vector3.Scale(
+                            hit.collider.gameObject.transform.forward, 
+                            new Vector3(hit.collider.gameObject.transform.localScale.x, 0, hit.collider.gameObject.transform.localScale.z)
+                            );
+
+                        newDest.y = agent.destination.y;
+
+                        // chest is far away schedule chest open
+                        if (agent.destination != newDest)
+                        {
+                            agent.destination = newDest;
+                            openChest.Value = chest;
+                        }
+                        else // chest is near, open chest
+                        {
+                            chest.Open();
+                        }
+                    }
+                }
             });
 
+        // delayed chest open
         player.navComplete()
             .Select(_ => openChest.Value)
             .Where((Chest chest) => chest != null)
