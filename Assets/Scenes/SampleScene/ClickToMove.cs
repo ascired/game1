@@ -36,7 +36,7 @@ public class ClickToMove : MonoBehaviour {
                 Chest chest = hit.transform.GetComponent<Chest>();
 
                 // walkable area click
-                if (NavMesh.SamplePosition(hit.point, out meshHit, 0.5f, 1))
+                if (NavMesh.SamplePosition(hit.point, out meshHit, 1f, 1))
                 {
                     openChest.Value = null;
                     agent.destination = hit.point;
