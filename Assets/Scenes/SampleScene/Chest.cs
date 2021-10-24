@@ -13,6 +13,7 @@ public class Chest : MonoBehaviour {
     private Player Player;
     private Text Title;
     private Transform Container;
+    private GameObject Glow;
     private Item[] ItemList;
 
     void Start()
@@ -22,6 +23,7 @@ public class Chest : MonoBehaviour {
         Player = SceneManager.Instance.player;
         Title = ChestPanel.transform.GetComponentInChildren<Text>();
         Container = ChestPanel.transform.Find("Container");
+        Glow = gameObject.transform.Find("chest_glow")?.gameObject;
 
         int count = Random.Range(1, 4);
         ItemList = new Item[count];
@@ -33,6 +35,22 @@ public class Chest : MonoBehaviour {
 
         this.OnTriggerExitAsObservable()
             .Subscribe(_ => Close());
+    }
+
+    private void OnMouseEnter()
+    {
+        if (Glow)
+        {
+            Glow.SetActive(true);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (Glow)
+        {
+            Glow.SetActive(false);
+        }
     }
 
     public void Open()

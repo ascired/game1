@@ -35,36 +35,37 @@ public class ClickToMove : MonoBehaviour {
                 NavMeshHit meshHit;
                 Chest chest = hit.transform.GetComponent<Chest>();
 
-                // walkable area click
-                if (NavMesh.SamplePosition(hit.point, out meshHit, 1f, 1))
+
+                // chest click
+                if (chest != null)
                 {
-                    openChest.Value = null;
-                    agent.destination = hit.point;
-                }
-                else // not walkable area click
-                {
-                    // chest click
-                    if (chest != null)
+                    Vector3 newDest =
+                    hit.collider.gameObject.transform.position
+                    + Vector3.Scale(
+                        hit.collider.gameObject.transform.forward,
+                        new Vector3(hit.collider.gameObject.transform.localScale.x, 0, hit.collider.gameObject.transform.localScale.z)
+                        );
+
+                    newDest.y = agent.destination.y;
+
+                    // chest is far away schedule chest open
+                    if (agent.destination != newDest)
                     {
-                        Vector3 newDest = 
-                        hit.collider.gameObject.transform.position 
-                        + Vector3.Scale(
-                            hit.collider.gameObject.transform.forward, 
-                            new Vector3(hit.collider.gameObject.transform.localScale.x, 0, hit.collider.gameObject.transform.localScale.z)
-                            );
-
-                        newDest.y = agent.destination.y;
-
-                        // chest is far away schedule chest open
-                        if (agent.destination != newDest)
-                        {
-                            agent.destination = newDest;
-                            openChest.Value = chest;
-                        }
-                        else // chest is near, open chest
-                        {
-                            chest.Open();
-                        }
+                        agent.destination = newDest;
+                        openChest.Value = chest;
+                    }
+                    else // chest is near, open chest
+                    {
+                        chest.Open();
+                    }
+                }
+                else
+                {
+                    // walkable area click
+                    if (NavMesh.SamplePosition(hit.point, out meshHit, 2f, 1))
+                    {
+                        openChest.Value = null;
+                        agent.destination = hit.point;
                     }
                 }
             });

@@ -134,7 +134,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"fileID\":10202,\"guid\":\"0000000000000000e000000000000000\",\"type\":0}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":10210,\"guid\":\"0000000000000000e000000000000000\",\"type\":0}}",
             "m_Guid": ""
         }
     },
@@ -438,7 +438,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":10300,\"guid\":\"0000000000000000f000000000000000\",\"type\":0}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"c510a006e2f074cf5a24d7d72ec510c3\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_DefaultType": 0
@@ -756,8 +756,8 @@
     "m_Color": {
         "color": {
             "r": 1.0,
-            "g": 0.8423298597335815,
-            "b": 0.0,
+            "g": 0.7466405034065247,
+            "b": 0.2783018946647644,
             "a": 1.0
         },
         "mode": 0
