@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public PlayerInventory inventory;
     public NavMeshAgent agent;
 
+    private Animator anim;
+
     private static Subject<Unit> navCompleteSubject;
     public IObservable<Unit> navComplete()
     {
@@ -29,11 +31,17 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
+
         this.UpdateAsObservable()
             .Select(_ => agent.hasPath & agent.remainingDistance < 1f)
             .DistinctUntilChanged()
             .Where(isFinishing => isFinishing)
             .Subscribe(x => navCompleteSubject.OnNext(Unit.Default));
+
+        this.UpdateAsObservable()
+            .Select(_ => agent.velocity > Vector3.zero)
+            .Subscribe((bool running) => anim.SetBool("Run", running));
 
     }
 
