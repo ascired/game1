@@ -40,9 +40,14 @@ public class Player : MonoBehaviour
             .Subscribe(x => navCompleteSubject.OnNext(Unit.Default));
 
         this.UpdateAsObservable()
-            .Select(_ => agent.velocity > Vector3.zero)
+            .Select(_ => Vector3.SqrMagnitude(agent.velocity) > 0.5)
             .Subscribe((bool running) => anim.SetBool("Run", running));
 
+    }
+
+    public bool V3Equal(Vector3 a, Vector3 b)
+    {
+        return Vector3.SqrMagnitude(a - b) < 0.1;
     }
 
     // Update is called once per frame
