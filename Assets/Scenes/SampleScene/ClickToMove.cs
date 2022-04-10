@@ -35,12 +35,10 @@ public class ClickToMove : MonoBehaviour {
                 NavMeshHit meshHit;
                 Chest chest = hit.transform.GetComponent<Chest>();
 
-
                 // chest click
                 if (chest != null)
                 {
-                    Vector3 newDest =
-                    hit.collider.gameObject.transform.position
+                    Vector3 newDest = hit.collider.gameObject.transform.position
                     + Vector3.Scale(
                         hit.collider.gameObject.transform.forward,
                         new Vector3(hit.collider.gameObject.transform.localScale.x, 0, hit.collider.gameObject.transform.localScale.z)
@@ -49,9 +47,9 @@ public class ClickToMove : MonoBehaviour {
                     newDest.y = agent.destination.y;
 
                     // chest is far away schedule chest open
-                    if (agent.destination != newDest)
+                    if (Vector3.Distance(newDest, agent.destination) > 5f)
                     {
-                        agent.destination = newDest;
+                        player.setNextPosition(newDest);
                         openChest.Value = chest;
                     }
                     else // chest is near, open chest
@@ -65,7 +63,10 @@ public class ClickToMove : MonoBehaviour {
                     if (NavMesh.SamplePosition(hit.point, out meshHit, 2f, 1))
                     {
                         openChest.Value = null;
-                        agent.destination = hit.point;
+                        if (Vector3.Distance(hit.point, agent.destination) > 1f)
+                        {
+                            player.setNextPosition(hit.point);
+                        }
                     }
                 }
             });

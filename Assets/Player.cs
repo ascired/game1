@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -13,7 +11,24 @@ public class Player : MonoBehaviour
 
     private Animator anim;
 
+
+    private static Subject<Vector3> nextDestinationSubject = new Subject<Vector3>();
     private static Subject<Unit> navCompleteSubject;
+
+    public void setNextPosition(Vector3 pos)
+    {
+        nextDestinationSubject.OnNext(pos);
+    }
+    public IObservable<Vector3> nextDestination()
+    {
+        if (nextDestinationSubject == null)
+        {
+            nextDestinationSubject = new Subject<Vector3>();
+        }
+
+        return nextDestinationSubject.AsObservable();
+    }
+
     public IObservable<Unit> navComplete()
     {
         if (navCompleteSubject == null)
@@ -23,6 +38,7 @@ public class Player : MonoBehaviour
 
         return navCompleteSubject.AsObservable();
     }
+
     void OnTriggerExit(Collider other)
     {
         // Debug.Log(other.transform.name);
@@ -34,20 +50,25 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
 
         this.UpdateAsObservable()
-            .Select(_ => agent.hasPath & agent.remainingDistance < 1f)
+            .Select(_ => agent.remainingDistance <= 1f)
             .DistinctUntilChanged()
             .Where(isFinishing => isFinishing)
             .Subscribe(x => navCompleteSubject.OnNext(Unit.Default));
 
-        this.UpdateAsObservable()
-            .Select(_ => Vector3.SqrMagnitude(agent.velocity) > 0.5)
-            .Subscribe((bool running) => anim.SetBool("Run", running));
+        nextDestination()
+            .Do(_ => Debug.Log("nav start"))
+            .Subscribe(dest => moveToDest(dest));
+
+        navComplete()
+            .Do(_ => Debug.Log("nav end"))
+            .Subscribe(_ => anim.SetBool("Run", false));
 
     }
 
-    public bool V3Equal(Vector3 a, Vector3 b)
-    {
-        return Vector3.SqrMagnitude(a - b) < 0.1;
+    public void moveToDest(Vector3 dest)
+    {        
+        agent.destination = dest;
+        anim.SetBool("Run", true);
     }
 
     // Update is called once per frame

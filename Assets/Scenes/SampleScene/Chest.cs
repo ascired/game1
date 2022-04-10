@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Threading;
 using UnityEngine.UI;
 using UniRx.Triggers;
 using UniRx;
@@ -18,7 +15,7 @@ public class Chest : MonoBehaviour {
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = this.GetComponent<Animator>();
 
         Player = SceneManager.Instance.player;
         Title = ChestPanel.transform.GetComponentInChildren<Text>();
@@ -35,6 +32,12 @@ public class Chest : MonoBehaviour {
 
         this.OnTriggerExitAsObservable()
             .Subscribe(_ => Close());
+
+        this.UpdateAsObservable()
+            .Select(_ => ChestPanel.activeSelf)
+            .DistinctUntilChanged()
+            .Where(isActive => !isActive)
+            .Subscribe(_ => ToggleLidAnimation(false));
     }
 
     private void OnMouseEnter()
@@ -53,12 +56,16 @@ public class Chest : MonoBehaviour {
         }
     }
 
-    public void Open()
+    private void ToggleLidAnimation(bool isOpen)
     {
         if (anim)
         {
-            anim.SetTrigger("Open");
+            anim.SetBool("IsOpen", isOpen);
         }
+    }
+
+    public void Open()
+    {
         ClearChestPanel();
         Title.text = name;
 
@@ -68,14 +75,11 @@ public class Chest : MonoBehaviour {
         }
 
         ChestPanel.SetActive(true);
+        ToggleLidAnimation(true);
     }
 
     public void Close()
     {
-        if (anim)
-        {
-            anim.SetTrigger("Close");
-        }
         ClearChestPanel();
         ChestPanel.SetActive(false);
     }
