@@ -17,7 +17,7 @@ public class Chest : MonoBehaviour {
     {
         anim = this.GetComponent<Animator>();
 
-        Player = SceneManager.Instance.player;
+        Player = MainManager.Instance.player;
         Title = ChestPanel.transform.GetComponentInChildren<Text>();
         Container = ChestPanel.transform.Find("Container");
         Glow = gameObject.transform.Find("chest_glow")?.gameObject;
