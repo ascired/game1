@@ -33,8 +33,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: 5d7061fc7da05ce44add317708ec7215, type: 3}
-  m_Prefab: {fileID: 8054533140301882152, guid: 439347daebb9d4c49bc0207cc598caa0,
-    type: 3}
+  m_Prefab: {fileID: 8054533140301882152, guid: 439347daebb9d4c49bc0207cc598caa0, type: 3}
   m_Description: Use a bow to attack enemies from range.
   m_Category: {fileID: -5355670550631679221}
   m_IsSellable: 1
@@ -52,8 +51,7 @@ MonoBehaviour:
   m_CraftingDuration: 5
   m_UseCraftingSkill: 1
   m_SkillWindow: Skills
-  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3,
-    type: 2}
+  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
   m_RemoveIngredientsWhenFailed: 1
   m_MinCraftingSkillValue: 4
   m_CraftingAnimatorState: Blacksmithy
@@ -164,8 +162,7 @@ MonoBehaviour:
         m_Type: DevionGames.InventorySystem.CheckSkill
         m_Enabled: 1
         m_WindowName: Skills
-        m_Skill: {fileID: 7032449652308580212, guid: e1f045c49e197e3439b99da9edbc5ba3,
-          type: 2}
+        m_Skill: {fileID: 7032449652308580212, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
         m_SuccessNotification:
           title: 
           text: 
@@ -364,8 +361,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: d3316fbdddb3b5246996a2fcad5c47d9, type: 3}
-  m_Prefab: {fileID: 2655642475562369736, guid: c041592fa5250614ca2cfef13669bda9,
-    type: 3}
+  m_Prefab: {fileID: 2655642475562369736, guid: c041592fa5250614ca2cfef13669bda9, type: 3}
   m_Description: A tasty fish
   m_Category: {fileID: 171625507360801261}
   m_IsSellable: 1
@@ -673,8 +669,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: b69b1ca52acfaed43b07c602653a71fd, type: 3}
-  m_Prefab: {fileID: 8050120179880737813, guid: 9c7a32b2c2e150b4a9f6d6d8974a9f40,
-    type: 3}
+  m_Prefab: {fileID: 8050120179880737813, guid: 9c7a32b2c2e150b4a9f6d6d8974a9f40, type: 3}
   m_Description: Resource for crafting items.
   m_Category: {fileID: -7427245140175711199}
   m_IsSellable: 1
@@ -733,8 +728,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: 81e9ec1d21e1f8f43a06e7e75c17fc37, type: 3}
-  m_Prefab: {fileID: 7757701744868425547, guid: 6a881db9233fb0748ad9709b178e05e2,
-    type: 3}
+  m_Prefab: {fileID: 7757701744868425547, guid: 6a881db9233fb0748ad9709b178e05e2, type: 3}
   m_Description: An axe can be used to cut trees.
   m_Category: {fileID: -9040799555073544844}
   m_IsSellable: 1
@@ -752,8 +746,7 @@ MonoBehaviour:
   m_CraftingDuration: 3
   m_UseCraftingSkill: 1
   m_SkillWindow: Skills
-  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3,
-    type: 2}
+  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
   m_RemoveIngredientsWhenFailed: 1
   m_MinCraftingSkillValue: 0
   m_CraftingAnimatorState: Blacksmithy
@@ -1029,8 +1022,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: Cool Shield
   m_Icon: {fileID: 21300000, guid: b97c91e8b348f3f4ebdc11f5c82182cd, type: 3}
-  m_Prefab: {fileID: 6955947972541771316, guid: caa4712265fb87f48917ca9e4be3350a,
-    type: 3}
+  m_Prefab: {fileID: 6955947972541771316, guid: caa4712265fb87f48917ca9e4be3350a, type: 3}
   m_Description: A wooden shield.
   m_Category: {fileID: 8705209814584371102}
   m_IsSellable: 1
@@ -1048,8 +1040,7 @@ MonoBehaviour:
   m_CraftingDuration: 5
   m_UseCraftingSkill: 1
   m_SkillWindow: Skills
-  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3,
-    type: 2}
+  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
   m_RemoveIngredientsWhenFailed: 1
   m_MinCraftingSkillValue: 7.7
   m_CraftingAnimatorState: Blacksmithy
@@ -1125,8 +1116,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: e536de7f3a37f304e81955e8deefe154, type: 3}
-  m_Prefab: {fileID: 9131482177403923620, guid: 9fd2646d1f1c356469e7fc4105ef4aae,
-    type: 3}
+  m_Prefab: {fileID: 9131482177403923620, guid: 9fd2646d1f1c356469e7fc4105ef4aae, type: 3}
   m_Description: A fence can be placed on ground. Rotate with E.
   m_Category: {fileID: -6294223960729143046}
   m_IsSellable: 1
@@ -1144,8 +1134,7 @@ MonoBehaviour:
   m_CraftingDuration: 2
   m_UseCraftingSkill: 1
   m_SkillWindow: Skills
-  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3,
-    type: 2}
+  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
   m_RemoveIngredientsWhenFailed: 1
   m_MinCraftingSkillValue: 0
   m_CraftingAnimatorState: Blacksmithy
@@ -1185,8 +1174,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: 597ce5b3f1754db4799e0b0046802f23, type: 3}
-  m_Prefab: {fileID: 3767645054357415353, guid: 9a894f0b89034d146b6cf6c49af16592,
-    type: 3}
+  m_Prefab: {fileID: 3767645054357415353, guid: 9a894f0b89034d146b6cf6c49af16592, type: 3}
   m_Description: Plant to craft a health potion.
   m_Category: {fileID: -7427245140175711199}
   m_IsSellable: 1
@@ -1229,8 +1217,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: f6293f20fd85aa143bead12afd67ebbb, type: 3}
-  m_Prefab: {fileID: 5445779230513671954, guid: f82bc419a6e172a44bd05e66d42408dc,
-    type: 3}
+  m_Prefab: {fileID: 5445779230513671954, guid: f82bc419a6e172a44bd05e66d42408dc, type: 3}
   m_Description: Hammer is used to craft items.
   m_Category: {fileID: -9040799555073544844}
   m_IsSellable: 1
@@ -1248,8 +1235,7 @@ MonoBehaviour:
   m_CraftingDuration: 3
   m_UseCraftingSkill: 1
   m_SkillWindow: Skills
-  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3,
-    type: 2}
+  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
   m_RemoveIngredientsWhenFailed: 1
   m_MinCraftingSkillValue: 0
   m_CraftingAnimatorState: Blacksmithy
@@ -1435,8 +1421,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: 693293c396231194abeef3171f977485, type: 3}
-  m_Prefab: {fileID: 4297410541953718099, guid: 233c66a6349a8c141972c04334801bca,
-    type: 3}
+  m_Prefab: {fileID: 4297410541953718099, guid: 233c66a6349a8c141972c04334801bca, type: 3}
   m_Description: 
   m_Category: {fileID: -6294223960729143046}
   m_IsSellable: 0
@@ -1479,8 +1464,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: a937ffac382045c4faf50a0158a078c7, type: 3}
-  m_Prefab: {fileID: 6550093729711604389, guid: 53bbca1204ea7aa48938286fdd6d36b6,
-    type: 3}
+  m_Prefab: {fileID: 6550093729711604389, guid: 53bbca1204ea7aa48938286fdd6d36b6, type: 3}
   m_Description: Tool used for Alchemy.
   m_Category: {fileID: -9040799555073544844}
   m_IsSellable: 1
@@ -1498,8 +1482,7 @@ MonoBehaviour:
   m_CraftingDuration: 2
   m_UseCraftingSkill: 1
   m_SkillWindow: Skills
-  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3,
-    type: 2}
+  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
   m_RemoveIngredientsWhenFailed: 1
   m_MinCraftingSkillValue: 4
   m_CraftingAnimatorState: Blacksmithy
@@ -1539,8 +1522,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: 2ce6832fc1867d940ab6f4f871d0df34, type: 3}
-  m_Prefab: {fileID: 2583769445098824402, guid: 889b596f02ef6534690cb9390fb35ee0,
-    type: 3}
+  m_Prefab: {fileID: 2583769445098824402, guid: 889b596f02ef6534690cb9390fb35ee0, type: 3}
   m_Description: With the fishing rod you can catch fishes in water.
   m_Category: {fileID: -9040799555073544844}
   m_IsSellable: 1
@@ -1592,8 +1574,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
-  m_Prefab: {fileID: 7505499703950806449, guid: 8d1205197ce57bf48b0d586eccfd9e61,
-    type: 3}
+  m_Prefab: {fileID: 7505499703950806449, guid: 8d1205197ce57bf48b0d586eccfd9e61, type: 3}
   m_Description: One handed weapon.
   m_Category: {fileID: 5270022900184783660}
   m_IsSellable: 1
@@ -1611,8 +1592,7 @@ MonoBehaviour:
   m_CraftingDuration: 3
   m_UseCraftingSkill: 1
   m_SkillWindow: Skills
-  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3,
-    type: 2}
+  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
   m_RemoveIngredientsWhenFailed: 1
   m_MinCraftingSkillValue: 1
   m_CraftingAnimatorState: Blacksmithy
@@ -1722,8 +1702,7 @@ MonoBehaviour:
         m_Type: DevionGames.InventorySystem.CheckSkill
         m_Enabled: 1
         m_WindowName: Skills
-        m_Skill: {fileID: -1079133913141893833, guid: e1f045c49e197e3439b99da9edbc5ba3,
-          type: 2}
+        m_Skill: {fileID: -1079133913141893833, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
         m_SuccessNotification:
           title: 
           text: 
@@ -1757,8 +1736,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: e5cec7d40f0b3224b8ff49b5c174ed93, type: 3}
-  m_Prefab: {fileID: 8526908806523285250, guid: 1961bb04f2536f846a015e7023bb8217,
-    type: 3}
+  m_Prefab: {fileID: 8526908806523285250, guid: 1961bb04f2536f846a015e7023bb8217, type: 3}
   m_Description: Resource for crafting items.
   m_Category: {fileID: -7427245140175711199}
   m_IsSellable: 1
@@ -1776,8 +1754,7 @@ MonoBehaviour:
   m_CraftingDuration: 3
   m_UseCraftingSkill: 1
   m_SkillWindow: Skills
-  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3,
-    type: 2}
+  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
   m_RemoveIngredientsWhenFailed: 0
   m_MinCraftingSkillValue: 0
   m_CraftingAnimatorState: Blacksmithy
@@ -1925,8 +1902,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: 575a1e2821f78e24bb70f3ba24d83bde, type: 3}
-  m_Prefab: {fileID: 2446829401942333329, guid: f8834d5f45c6f6c40906a029b73145c6,
-    type: 3}
+  m_Prefab: {fileID: 2446829401942333329, guid: f8834d5f45c6f6c40906a029b73145c6, type: 3}
   m_Description: A pickaxe can be used to mine.
   m_Category: {fileID: -9040799555073544844}
   m_IsSellable: 1
@@ -1944,8 +1920,7 @@ MonoBehaviour:
   m_CraftingDuration: 5
   m_UseCraftingSkill: 1
   m_SkillWindow: Skills
-  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3,
-    type: 2}
+  m_CraftingSkill: {fileID: 4594666206616667452, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
   m_RemoveIngredientsWhenFailed: 1
   m_MinCraftingSkillValue: 0
   m_CraftingAnimatorState: Blacksmithy
@@ -1982,8 +1957,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: db427fab3e94daf4caa704d9314a77a1, type: 3}
-  m_Prefab: {fileID: 8586804418029938465, guid: bf4366d8a00ec44418140c9fb529068e,
-    type: 3}
+  m_Prefab: {fileID: 8586804418029938465, guid: bf4366d8a00ec44418140c9fb529068e, type: 3}
   m_Description: This recipe teaches you to craft a bow.
   m_Category: {fileID: -6294223960729143046}
   m_IsSellable: 1
@@ -2064,8 +2038,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: 24ce0f2633d3bab4e9ba1db561b8b567, type: 3}
-  m_Prefab: {fileID: 5363674059850198200, guid: f759c16df3c7ec044a2aaa23d3c77645,
-    type: 3}
+  m_Prefab: {fileID: 5363674059850198200, guid: f759c16df3c7ec044a2aaa23d3c77645, type: 3}
   m_Description: A fish that can be cooked.
   m_Category: {fileID: -7427245140175711199}
   m_IsSellable: 1
@@ -2234,8 +2207,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: e50febd6717db2b43a8fa67d1259fa02, type: 3}
-  m_Prefab: {fileID: 8838616929701194134, guid: 406b98225cd8404479b032b2508644f5,
-    type: 3}
+  m_Prefab: {fileID: 8838616929701194134, guid: 406b98225cd8404479b032b2508644f5, type: 3}
   m_Description: Arrows are required to use a bow.
   m_Category: {fileID: -7427245140175711199}
   m_IsSellable: 1
@@ -2539,8 +2511,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: fb38af54312632d47bc615bfe636f9a4, type: 3}
-  m_Prefab: {fileID: 7185777887056126559, guid: 7129d33baee5a304fa5a78de1cd04f6a,
-    type: 3}
+  m_Prefab: {fileID: 7185777887056126559, guid: 7129d33baee5a304fa5a78de1cd04f6a, type: 3}
   m_Description: Restores your health by 10 points.
   m_Category: {fileID: 171625507360801261}
   m_IsSellable: 1
@@ -2558,8 +2529,7 @@ MonoBehaviour:
   m_CraftingDuration: 2
   m_UseCraftingSkill: 1
   m_SkillWindow: Skills
-  m_CraftingSkill: {fileID: -2308325603847997442, guid: e1f045c49e197e3439b99da9edbc5ba3,
-    type: 2}
+  m_CraftingSkill: {fileID: -2308325603847997442, guid: e1f045c49e197e3439b99da9edbc5ba3, type: 2}
   m_RemoveIngredientsWhenFailed: 1
   m_MinCraftingSkillValue: 0
   m_CraftingAnimatorState: Cooking
@@ -2770,8 +2740,7 @@ MonoBehaviour:
   m_UseItemNameAsDisplayName: 1
   m_DisplayName: New Item
   m_Icon: {fileID: 21300000, guid: 3e4fcc84a0ac95b429c56452575f6021, type: 3}
-  m_Prefab: {fileID: 8122114857979880778, guid: 9ca50f633f494d14fb4aef0e7f958c7c,
-    type: 3}
+  m_Prefab: {fileID: 8122114857979880778, guid: 9ca50f633f494d14fb4aef0e7f958c7c, type: 3}
   m_Description: Resource for crafting items.
   m_Category: {fileID: -7427245140175711199}
   m_IsSellable: 1

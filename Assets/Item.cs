@@ -54,25 +54,6 @@ public class Item
             { ItemRarity.Legendary, new Color32(215, 117, 0, 255) },
         };
 
-    public Item(
-        string name,
-        ItemRarity rarity,
-        ItemType type,
-        Stats stats,
-        bool craftable = true,
-        bool usable = false
-    )
-    {
-        Name = name;
-        Rarity = rarity;
-        Type = type;
-        Stats = stats;
-        Craftable = craftable;
-        Usable = usable;
-
-        IconItem = GenerateIconItem();
-    }
-
     public Item(ItemRarity rarity, ItemType type)
     {
         Name = GenerateName(type);
