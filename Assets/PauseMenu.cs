@@ -40,5 +40,6 @@ public class PauseMenu : MonoBehaviour
     public void PlayGame()
     {
         UnitySceneManager.LoadScene("Menu");
+        Resume();
     }
 }

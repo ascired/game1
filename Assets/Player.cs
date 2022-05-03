@@ -92,24 +92,28 @@ public class Player : MonoBehaviour
             .Select(_ => agent.remainingDistance <= 2.5f)
             .DistinctUntilChanged()
             .Where(isFinishing => isFinishing)
-            .Subscribe(x => navCompleteSubject.OnNext(Unit.Default));
+            .Subscribe(x => navCompleteSubject.OnNext(Unit.Default))
+            .AddTo(this);
 
         nextDestination()
             .Do(_ => Debug.Log("nav start"))
-            .Subscribe(dest => moveToDest(dest));
+            .Subscribe(dest => moveToDest(dest))
+            .AddTo(this);
 
         navComplete()
             .Do(_ => Debug.Log("nav end"))
             .Subscribe(_ => {
                 anim.SetBool(AnimType.Run.ToString(), false);
-            });
+            })
+            .AddTo(this);
 
 
         getTarget()
             .Where(enemy => enemy)
             .Select((Enemy enemy) => enemy.IsDead)
             .Switch()
-            .Subscribe(_ => stopAttackAnim());
+            .Subscribe(_ => stopAttackAnim())
+            .AddTo(this);
     }
 
     public void moveToDest(Vector3 dest)
