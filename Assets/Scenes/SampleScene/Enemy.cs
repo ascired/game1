@@ -10,8 +10,7 @@ public class Enemy : MonoBehaviour {
     private Player Player;
     private Text Title;
     private GameObject Glow;
-
-    public float maxHp = 100;
+    public float maxHp = 100f;
 
     public ReactiveProperty<float> CurrentHp { get; private set; }
 

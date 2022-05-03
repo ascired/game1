@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     public PlayerInventory inventory;
     public NavMeshAgent agent;
+    public float maxHealth = 100f;
     public float health = 100f;
     private Animator anim;
 
