@@ -2,16 +2,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx.Triggers;
 using UniRx;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
-public class Chest : MonoBehaviour {
-
+public class Chest : MonoBehaviour
+{
     public GameObject ChestPanel;
     private Animator anim;
     private Player Player;
     private Text Title;
     private Transform Container;
     private GameObject Glow;
-    private Item[] ItemList;
+    private int Id;
 
     void Start()
     {
@@ -23,12 +25,7 @@ public class Chest : MonoBehaviour {
         Glow = gameObject.transform.Find("chest_glow")?.gameObject;
 
         int count = Random.Range(1, 4);
-        ItemList = new Item[count];
-
-        for (int i = 0; i < count; i++)
-        {
-            ItemList[i] = ItemsManager.Instance.GenerateItem();
-        }
+        Id = ItemsManager.Instance.createNewChest(count);
 
         this.OnTriggerExitAsObservable()
             .Subscribe(_ => Close());
@@ -68,10 +65,15 @@ public class Chest : MonoBehaviour {
     {
         ClearChestPanel();
         Title.text = name;
+        List<int> ItemIds = ItemsManager.Instance.getChest(Id);
+        Dictionary<int, Item> itemList = ItemsManager.Instance.itemList;
 
-        foreach (Item item in ItemList)
+        foreach (int itemId in ItemIds)
         {
-            Instantiate(item.IconItem, Container);
+            if (itemList.ContainsKey(itemId))
+            {
+                Instantiate(itemList[itemId].IconItem, Container);
+            }
         }
 
         ChestPanel.SetActive(true);

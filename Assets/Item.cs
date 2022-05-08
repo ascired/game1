@@ -34,6 +34,7 @@ public class Stats
 
 public class Item
 {
+    public int Id;
     public string Name;
     public ItemRarity Rarity;
     public ItemType Type;
@@ -54,8 +55,9 @@ public class Item
             { ItemRarity.Legendary, new Color32(215, 117, 0, 255) },
         };
 
-    public Item(ItemRarity rarity, ItemType type)
+    public Item(int id, ItemRarity rarity, ItemType type)
     {
+        Id = id;
         Name = GenerateName(type);
         Rarity = rarity;
         Type = type;

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -11,18 +12,29 @@ public class Player : MonoBehaviour
         Run,
         Charge,
         Attack,
+        Die,
     }
 
-    public PlayerInventory inventory;
     public NavMeshAgent agent;
-    public float maxHealth = 100f;
-    public float health = 100f;
     private Animator anim;
+
+    public float maxHealth = 100f;
+    protected ReactiveProperty<float> CurrentHp { get; private set; } = new ReactiveProperty<float>(0);
+    public float Health
+    {
+        get => CurrentHp.Value;
+    }
 
     private float _ad = 10f;
     public float AttackDamage
     {
         get => _ad;
+    }
+
+    private int _as = 1000;
+    public float AttackSpeed
+    {
+        get => _as;
     }
 
     private static Subject<Vector3> nextDestinationSubject = new Subject<Vector3>();
@@ -79,15 +91,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        // Debug.Log(other.transform.name);
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        CurrentHp.Value = maxHealth;
 
         this.UpdateAsObservable()
             .Select(_ => agent.remainingDistance <= 2.5f)
@@ -108,20 +116,24 @@ public class Player : MonoBehaviour
             })
             .AddTo(this);
 
-
         getTarget()
             .Where(enemy => enemy)
             .Select((Enemy enemy) => enemy.IsDead)
             .Switch()
             .Subscribe(_ => stopAttackAnim())
             .AddTo(this);
+
+        CurrentHp
+            .Where((float hp) => hp < 0)
+            .Subscribe(_ => Die());
     }
 
     public void moveToDest(Vector3 dest)
-    {        
+    {
+        agent.updateRotation = true;
         agent.destination = dest;
-
         anim.SetBool(AnimType.Attack.ToString(), false);
+        anim.SetBool(AnimType.Charge.ToString(), false);
 
         if (targetEnemySubject.Value)
         {
@@ -136,6 +148,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TakeDamage(float ad)
+    {
+        CurrentHp.Value -= ad;
+    }
+
+    public void Heal(float hp)
+    {
+        if (CurrentHp.Value + hp > maxHealth)
+        {
+            CurrentHp.Value = maxHealth;
+        }
+        else
+        {
+            CurrentHp.Value += hp;
+        }
+    }
+
     public void startAttack(Enemy enemy)
     {
         if (targetEnemySubject.Value)
@@ -145,12 +174,10 @@ public class Player : MonoBehaviour
 
             agent.updateRotation = false;
 
-            Vector3 look = enemy.transform.position
-                    - Vector3.Scale(
-                        enemy.transform.forward,
-                        new Vector3(enemy.transform.localScale.x, 0, enemy.transform.localScale.z)
-                        );
-
+            Vector3 look = enemy.transform.position - Vector3.Scale(
+                enemy.transform.forward,
+                new Vector3(enemy.transform.localScale.x, 0, enemy.transform.localScale.z)
+            );
 
             transform.LookAt(look);
         }
@@ -162,5 +189,10 @@ public class Player : MonoBehaviour
     {
         anim.SetBool(AnimType.Attack.ToString(), false);
         anim.SetBool(AnimType.Charge.ToString(), false);
+        targetEnemySubject.OnNext(null);
+    }
+    public void Die()
+    {
+        anim.SetBool(AnimType.Die.ToString(), true);
     }
 }

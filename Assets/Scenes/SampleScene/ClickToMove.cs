@@ -112,8 +112,6 @@ public class ClickToMove : MonoBehaviour {
             .Where((Enemy enemy) => enemy != null)
             .Subscribe((Enemy enemy) =>
             {
-
-
                 Vector3 look = enemy.transform.position
                     - Vector3.Scale(
                         enemy.transform.forward,
