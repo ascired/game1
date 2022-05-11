@@ -824,6 +824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
+  attackDamage: 25
   attackSpeed: 500
 --- !u!136 &395838068
 CapsuleCollider:
@@ -871,7 +872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   attackDistanceThreshold: 30
-  audioMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 18fe0b965bf6bea489be9f1479ee42c4, type: 2}
 --- !u!4 &438876927
 Transform:
   m_ObjectHideFlags: 0
@@ -2246,6 +2247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
+  attackDamage: 25
   attackSpeed: 500
 --- !u!136 &993665399
 CapsuleCollider:

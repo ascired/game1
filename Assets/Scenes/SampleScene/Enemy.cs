@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour {
     private Text Title;
     private GameObject Glow;
     public float maxHp = 100f;
-    private float attackDamage = 1;
+    public float attackDamage = 25;
     public int attackSpeed = 500;
 
     public ReactiveProperty<float> CurrentHp { get; private set; }

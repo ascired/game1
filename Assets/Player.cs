@@ -97,6 +97,8 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         CurrentHp.Value = maxHealth;
 
+        DieMenu menu = FindObjectOfType<DieMenu>();
+
         this.UpdateAsObservable()
             .Select(_ => agent.remainingDistance <= 2.5f)
             .DistinctUntilChanged()
@@ -125,7 +127,12 @@ public class Player : MonoBehaviour
 
         CurrentHp
             .Where((float hp) => hp < 0)
-            .Subscribe(_ => Die());
+            .Take(1)
+            .Do(_ => Die())
+            .Delay(TimeSpan.FromMilliseconds(1100))
+            .Do(_ => menu.DiePause())
+            .Subscribe()
+            .AddTo(this);
     }
 
     public void moveToDest(Vector3 dest)
