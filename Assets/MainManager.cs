@@ -11,6 +11,7 @@ public class MainManager : MonoBehaviour
 
     public AudioMixer audioMixer;
 
+
     void Awake()
     {
         if (Instance == null) { Instance = this; }
