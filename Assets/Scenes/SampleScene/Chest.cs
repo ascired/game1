@@ -25,7 +25,7 @@ public class Chest : MonoBehaviour
         Glow = gameObject.transform.Find("chest_glow")?.gameObject;
 
         int count = Random.Range(1, 4);
-        Id = ItemsManager.Instance.createNewChest(count);
+        Id = ItemsManager.Instance.createNewChest(1);
 
         this.OnTriggerExitAsObservable()
             .Subscribe(_ => Close());
