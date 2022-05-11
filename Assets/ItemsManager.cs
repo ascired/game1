@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 
 public class ItemsManager : MonoBehaviour
 {
-    public GameObject itemIcon;
+    public GameObject healthIcon;
+    public GameObject armorIcon;
     public static ItemsManager Instance { get; private set; }
     public Dictionary<int, Item> itemList = new Dictionary<int, Item>();
     public Dictionary<int, Item> playerItems = new Dictionary<int, Item>();
@@ -46,7 +47,7 @@ public class ItemsManager : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            Item newItem = ItemsManager.Instance.GenerateItem();
+            Item newItem = ItemsManager.Instance.GenerateItem(chestId);
 
             EvtTrigger trigger = newItem.IconItem.GetComponent<EvtTrigger>();
             trigger.id = newItem.Id;
@@ -68,13 +69,13 @@ public class ItemsManager : MonoBehaviour
         return chests[chestId];
     }
 
-    public Item GenerateItem()
+    public Item GenerateItem(int id)
     {
         itemId++;
         float rand = Random.Range(0f, 1f);
         int i = System.Array.FindIndex(RarityProbability, ((float prob) => rand < prob));
         ItemRarity rarity = i >= 0 ? (ItemRarity)i : ItemRarity.Poor;
-        ItemType type = ItemType.Weapon;
+        ItemType type = id % 2 == 0 ? ItemType.Potion : ItemType.Armor;
         Item newItem = new Item(itemId, rarity, type);
         itemList.Add(itemId, newItem);
 

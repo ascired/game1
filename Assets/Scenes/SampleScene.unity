@@ -899,7 +899,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61100c73ab435c4d82951dc649b22ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 2866483220076681242, guid: e1523fca5f462c046a972b0c827eb270, type: 3}
+  healthIcon: {fileID: 2866483220076681242, guid: e1523fca5f462c046a972b0c827eb270, type: 3}
+  armorIcon: {fileID: 2866483220076681242, guid: 49c3233ea8036c94a8503ceaee7ba928, type: 3}
 --- !u!1 &538343208
 GameObject:
   m_ObjectHideFlags: 0
