@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void GetArmor(float ap)
+    public void AddArmor(float ap)
     {
         if (CurrentArmor.Value + ap > maxHealth)
         {

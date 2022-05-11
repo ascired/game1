@@ -85,7 +85,19 @@ public class ItemsManager : MonoBehaviour
 
     public void addItemToPlayer(int id)
     {
-        playerItems.Add(id, itemList[id]);
+        Item item = itemList[id];
+        Player player = MainManager.Instance.player;
+
+        if (item.Type == ItemType.Potion)
+        {
+            player.Heal(item.Stats.Health);
+        }
+        else
+        {
+            player.AddArmor(item.Stats.Armor);
+        }
+
+        playerItems.Add(id, item);
         itemList.Remove(id);
     }
 }

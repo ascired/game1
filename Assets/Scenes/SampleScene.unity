@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
-  attackDamage: 25
+  attackDamage: 3
   attackSpeed: 500
 --- !u!136 &395838068
 CapsuleCollider:
@@ -2249,7 +2249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
-  attackDamage: 25
+  attackDamage: 3
   attackSpeed: 500
 --- !u!136 &993665399
 CapsuleCollider:
