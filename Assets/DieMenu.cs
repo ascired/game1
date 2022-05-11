@@ -7,11 +7,9 @@ public class DieMenu : MonoBehaviour
 {
     public bool DieGame;
     public GameObject dieGameMenu;
-
-    
-
     public void Again()
     {
+        Time.timeScale = 1f;
         UnitySceneManager.LoadScene("SampleScene");
     }
 

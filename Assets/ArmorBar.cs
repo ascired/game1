@@ -15,6 +15,6 @@ public class ArmorBar : MonoBehaviour
 
     void Update()
     {
-        armorBarImage.fillAmount = Mathf.Clamp(player.Health / player.maxHealth, 0, 1f);
+        armorBarImage.fillAmount = Mathf.Clamp(player.Armor / player.maxHealth, 0, 1f);
     }
 }

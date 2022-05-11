@@ -20,9 +20,14 @@ public class Player : MonoBehaviour
 
     public float maxHealth = 100f;
     protected ReactiveProperty<float> CurrentHp { get; private set; } = new ReactiveProperty<float>(0);
+    protected ReactiveProperty<float> CurrentArmor { get; private set; } = new ReactiveProperty<float>(0);
     public float Health
     {
         get => CurrentHp.Value;
+    }
+    public float Armor
+    {
+        get => CurrentArmor.Value;
     }
 
     private float _ad = 10f;
@@ -96,6 +101,7 @@ public class Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         CurrentHp.Value = maxHealth;
+        CurrentArmor.Value = maxHealth / 2;
 
         DieMenu menu = FindObjectOfType<DieMenu>();
 
@@ -157,7 +163,14 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float ad)
     {
-        CurrentHp.Value -= ad;
+        if (CurrentArmor.Value <= 0)
+        {
+            CurrentHp.Value -= ad;
+        }
+        else
+        {
+            CurrentArmor.Value -= ad;
+        }
     }
 
     public void Heal(float hp)
@@ -169,6 +182,18 @@ public class Player : MonoBehaviour
         else
         {
             CurrentHp.Value += hp;
+        }
+    }
+
+    public void GetArmor(float ap)
+    {
+        if (CurrentArmor.Value + ap > maxHealth)
+        {
+            CurrentArmor.Value = maxHealth;
+        }
+        else
+        {
+            CurrentArmor.Value += ap;
         }
     }
 
