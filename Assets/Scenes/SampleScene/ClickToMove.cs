@@ -60,7 +60,7 @@ public class ClickToMove : MonoBehaviour {
                     {
                         chest.Open();
                     }
-                } else if (enemy != null) // enemy click
+                } else if (enemy != null && !enemy.IsDead.Value) // enemy click
                 {
                     Vector3 newDest = hit.collider.gameObject.transform.position
                     + Vector3.Scale(
