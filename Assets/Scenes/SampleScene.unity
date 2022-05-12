@@ -823,6 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fc0831639f23e479dbd045ca629453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackEffect: {fileID: 100010, guid: b97184e0833ffba4ca32beb2bc860a7c, type: 3}
   maxHp: 100
   attackDamage: 3
   attackSpeed: 500
@@ -1637,7 +1638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: 268}
+  m_AnchoredPosition: {x: -12, y: 431}
   m_SizeDelta: {x: 500, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &768127606
@@ -2250,6 +2251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72fc0831639f23e479dbd045ca629453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackEffect: {fileID: 100008, guid: 9d9788338b7ea814dae35d23d4cdd819, type: 3}
   maxHp: 100
   attackDamage: 3
   attackSpeed: 500

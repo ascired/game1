@@ -5,7 +5,7 @@ public class csShowAllEffect : MonoBehaviour
 {
     public string[] EffectName;
     public Transform[] Effect;
-    public UnityEngine.UI.Text Text1;
+    //public UnityEngine.UI.Text Text1;
     public int i = 0;
 
     void Start()
@@ -15,7 +15,7 @@ public class csShowAllEffect : MonoBehaviour
 
     void Update ()
     {
-        Text1.text = i + 1 + ":" + EffectName[i];
+        //Text1.text = i + 1 + ":" + EffectName[i];
 
         if (Input.GetKeyDown(KeyCode.Z))
         {

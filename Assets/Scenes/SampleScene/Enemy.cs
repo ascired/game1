@@ -9,10 +9,10 @@ public class Enemy : MonoBehaviour {
     private Animator anim;
     private Player Player;
     private Text Title;
-    private GameObject Glow;
+    public GameObject AttackEffect;
     public float maxHp = 100f;
     public float attackDamage = 3;
-    public int attackSpeed = 500;
+    public int attackSpeed = 1090;
 
     public ReactiveProperty<float> CurrentHp { get; private set; }
     public ReactiveProperty<bool> IsUnderAttack { get; private set; }
@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour {
         anim = this.GetComponent<Animator>();
 
         Player = MainManager.Instance.player;
-        Glow = gameObject.transform.Find("enemy_glow")?.gameObject;
 
         CurrentHp = new ReactiveProperty<float>(maxHp);
         IsUnderAttack = new ReactiveProperty<bool>(false);
@@ -72,7 +71,13 @@ public class Enemy : MonoBehaviour {
             .Where((bool isAttacking) => isAttacking)
             .Select(_ => Observable.Interval(TimeSpan.FromMilliseconds(attackSpeed)).TakeUntil(IsAttacking.Where((bool flag) => !flag)))
             .Switch()
+            .Do(_ =>
+            {
+                this.transform.LookAt(Player.transform.position);
+                Instantiate(AttackEffect, Player.transform.position, Quaternion.identity);
+            })
             .Subscribe(_ => Player.TakeDamage(attackDamage));
+
     }
 
     public void TakeDamage(float ad)
