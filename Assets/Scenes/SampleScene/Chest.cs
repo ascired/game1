@@ -28,13 +28,15 @@ public class Chest : MonoBehaviour
         Id = ItemsManager.Instance.createNewChest(1);
 
         this.OnTriggerExitAsObservable()
-            .Subscribe(_ => Close());
+            .Subscribe(_ => Close())
+            .AddTo(this);
 
         this.UpdateAsObservable()
             .Select(_ => ChestPanel.activeSelf)
             .DistinctUntilChanged()
             .Where(isActive => !isActive)
-            .Subscribe(_ => ToggleLidAnimation(false));
+            .Subscribe(_ => ToggleLidAnimation(false))
+            .AddTo(this);
     }
 
     private void OnMouseEnter()

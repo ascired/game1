@@ -37,7 +37,8 @@ public class Enemy : MonoBehaviour {
             .Subscribe(_ => {
                 IsUnderAttack.Value = false;
                 IsAttacking.Value = false;
-            });
+            })
+            .AddTo(this);
 
         IsDead
             .Do(_ => Die())
@@ -47,21 +48,24 @@ public class Enemy : MonoBehaviour {
             })
             .Do(v => Debug.Log("dead"))
             .Throttle(TimeSpan.FromMilliseconds(2000))
-            .Subscribe(_ => this.gameObject.SetActive(false));
+            .Subscribe(_ => this.gameObject.SetActive(false))
+            .AddTo(this);
 
         IsUnderAttack
             .Where((bool isAttacked) => isAttacked)
             .Do(_ => TakeDamage(Player.AttackDamage))
             .Select(_ => Observable.Interval(TimeSpan.FromMilliseconds(Player.AttackSpeed)).TakeUntil(IsUnderAttack.Where((bool flag) => !flag)))
             .Switch()
-            .Subscribe(_ => TakeDamage(Player.AttackDamage));
+            .Subscribe(_ => TakeDamage(Player.AttackDamage))
+            .AddTo(this);
 
         this.UpdateAsObservable()
             .Select(_ => Vector3.Distance(new Vector3(x: gameObject.transform.position.x, y: 0, z: gameObject.transform.position.z), new Vector3(x: Player.agent.transform.position.x, y: 0, z: Player.agent.transform.position.z)))
             .TakeUntil(IsDead)
             .Subscribe((float dist) => {
                 IsAttacking.Value = dist <= MainManager.Instance.attackDistanceThreshold;
-            });
+            })
+            .AddTo(this);
 
         IsAttacking
             .DistinctUntilChanged()
@@ -76,7 +80,8 @@ public class Enemy : MonoBehaviour {
                 this.transform.LookAt(Player.transform.position);
                 Instantiate(AttackEffect, Player.transform.position, Quaternion.identity);
             })
-            .Subscribe(_ => Player.TakeDamage(attackDamage));
+            .Subscribe(_ => Player.TakeDamage(attackDamage))
+            .AddTo(this);
 
     }
 

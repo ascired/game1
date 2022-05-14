@@ -94,7 +94,8 @@ public class ClickToMove : MonoBehaviour {
                         }
                     }
                 }
-            });
+            })
+            .AddTo(this);
 
         // delayed chest open
         player.navComplete()
@@ -104,7 +105,8 @@ public class ClickToMove : MonoBehaviour {
             {
                 player.transform.LookAt(chest.transform);
                 chest.Open();
-            });
+            })
+            .AddTo(this);
 
         // delayed enemy attack
         player.navComplete()
@@ -120,7 +122,8 @@ public class ClickToMove : MonoBehaviour {
 
                 Debug.DrawLine(look, new Vector3(look.x, 50, look.z), Color.red, 60f);
                 player.setAttackTarget(enemy);
-            });
+            })
+            .AddTo(this);
     }
     void Update () {
 

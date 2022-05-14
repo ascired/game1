@@ -10,11 +10,13 @@ public class HealthBar : MonoBehaviour
 
     public void Start()
     {
+        //Debug.Log("start: " + healthBarImage);
         player = MainManager.Instance.player;
     }
     
     void Update()
     {
+        //Debug.Log("update: " + healthBarImage);
         healthBarImage.fillAmount = Mathf.Clamp(player.Health / player.maxHealth, 0, 1f);
     }
 }
