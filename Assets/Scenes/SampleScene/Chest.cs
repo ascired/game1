@@ -28,6 +28,8 @@ public class Chest : MonoBehaviour
         Id = ItemsManager.Instance.createNewChest(1);
 
         this.OnTriggerExitAsObservable()
+            .Where(_ => ChestPanel.activeSelf)
+            .Do(other => Debug.Log(other))
             .Subscribe(_ => Close())
             .AddTo(this);
 
