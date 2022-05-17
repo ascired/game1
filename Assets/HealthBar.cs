@@ -11,7 +11,7 @@ public class HealthBar : MonoBehaviour
     public void Start()
     {
         //Debug.Log("start: " + healthBarImage);
-        player = MainManager.Instance.player;
+        player = MainManager.Instance.Player;
     }
     
     void Update()

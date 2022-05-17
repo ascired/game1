@@ -10,8 +10,8 @@ public class Enemy : MonoBehaviour {
     private Player Player;
     private Text Title;
     public GameObject AttackEffect;
-    public float maxHp = 100f;
-    public float attackDamage = 3;
+    public int maxHp = 100;
+    public int attackDamage = 3;
     public int attackSpeed = 1090;
 
     public ReactiveProperty<float> CurrentHp { get; private set; }
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour {
     {
         anim = this.GetComponent<Animator>();
 
-        Player = MainManager.Instance.player;
+        Player = MainManager.Instance.Player;
 
         CurrentHp = new ReactiveProperty<float>(maxHp);
         IsUnderAttack = new ReactiveProperty<bool>(false);

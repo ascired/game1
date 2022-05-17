@@ -3,7 +3,7 @@ using UnityEngine;
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance { get; private set; } // static singleton
-    public Player player;
+    public Player Player;
     public float attackDistanceThreshold = 30f;
 
     void Awake()
@@ -11,7 +11,13 @@ public class MainManager : MonoBehaviour
         if (Instance == null) { Instance = this; }
         else { Destroy(gameObject); }
 
-        player = FindObjectOfType<Player>();
+        Player = FindObjectOfType<Player>();
 
     }
+
+    public void nextLevel()
+    {
+        Player.level++;
+    }
+
 }

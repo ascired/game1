@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,19 +6,22 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class NextMenu : MonoBehaviour
 {
-    public bool DieGame;
-    public GameObject dieGameMenu;
+    public GameObject nextLevelMenu;
+
+    private Action nextLevelCallback;
     public void Next()
     {
         Time.timeScale = 1f;
-        UnitySceneManager.LoadScene("SampleScene");
+        MainManager.Instance.nextLevel();
+        nextLevelMenu.SetActive(false);
+        nextLevelCallback();
     }
 
-    public void FinishPause()
+    public void FinishPause(Action moveToReciever)
     {
-        dieGameMenu.SetActive(true);
         Time.timeScale = 0f;
-        DieGame = true;
+        nextLevelMenu.SetActive(true);
+        nextLevelCallback = moveToReciever;
     }
 
     public void LoadMenu()
