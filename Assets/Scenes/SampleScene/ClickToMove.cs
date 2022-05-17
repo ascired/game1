@@ -16,7 +16,7 @@ public class ClickToMove : MonoBehaviour {
     public ReactiveProperty<Enemy> attackEnemy { get; private set; } = new ReactiveProperty<Enemy>(null);
 
     void Start () {
-        player = MainManager.Instance.player;
+        player = MainManager.Instance.Player;
         agent = player.agent;
 
         raycastHitStream = this.UpdateAsObservable()
@@ -36,13 +36,15 @@ public class ClickToMove : MonoBehaviour {
             .Subscribe((RaycastHit hit) => 
             {
                 NavMeshHit meshHit;
+                Vector3 newDest;
                 Chest chest = hit.transform.GetComponent<Chest>();
                 Enemy enemy = hit.transform.GetComponent<Enemy>();
+                Portal portal = hit.transform.GetComponent<Portal>();
 
                 // chest click
                 if (chest != null)
                 {
-                    Vector3 newDest = hit.collider.gameObject.transform.position
+                    newDest = hit.collider.gameObject.transform.position
                     + Vector3.Scale(
                         hit.collider.gameObject.transform.forward,
                         new Vector3(hit.collider.gameObject.transform.localScale.x, 0, hit.collider.gameObject.transform.localScale.z)
@@ -60,9 +62,13 @@ public class ClickToMove : MonoBehaviour {
                     {
                         chest.Open();
                     }
-                } else if (enemy != null && !enemy.IsDead.Value) // enemy click
+
+                    return;
+                }
+                
+                if (enemy != null && !enemy.IsDead.Value) // enemy click
                 {
-                    Vector3 newDest = hit.collider.gameObject.transform.position
+                    newDest = hit.collider.gameObject.transform.position
                     + Vector3.Scale(
                         hit.collider.gameObject.transform.forward * 2f,
                         new Vector3(hit.collider.gameObject.transform.localScale.x, 0, hit.collider.gameObject.transform.localScale.z)
@@ -80,20 +86,31 @@ public class ClickToMove : MonoBehaviour {
                     {
                         player.setAttackTarget(enemy);
                     }
-                } else
+
+                    return;
+                }
+                
+                if (portal != null)
                 {
-                    // walkable area click
-                    if (NavMesh.SamplePosition(hit.point, out meshHit, 2f, 1))
+                    newDest = new Vector3(portal.gameObject.transform.position.x, 0.5f, portal.gameObject.transform.position.z);
+                    openChest.Value = null;
+                    attackEnemy.Value = null;
+                    player.setNextPosition(newDest);
+
+                    return;
+                }
+
+                if (NavMesh.SamplePosition(hit.point, out meshHit, 2f, 1))
+                {
+                    if (Vector3.Distance(hit.point, agent.destination) > 1f)
                     {
+                        newDest = hit.point;
                         openChest.Value = null;
                         attackEnemy.Value = null;
-
-                        if (Vector3.Distance(hit.point, agent.destination) > 1f)
-                        {
-                            player.setNextPosition(hit.point);
-                        }
+                        player.setNextPosition(newDest);
                     }
                 }
+
             })
             .AddTo(this);
 

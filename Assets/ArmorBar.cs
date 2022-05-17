@@ -10,7 +10,7 @@ public class ArmorBar : MonoBehaviour
 
     public void Start()
     {
-        player = MainManager.Instance.player;
+        player = MainManager.Instance.Player;
     }
 
     void Update()

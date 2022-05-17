@@ -18,14 +18,16 @@ public class Player : MonoBehaviour
     public NavMeshAgent agent;
     private Animator anim;
 
-    public float maxHealth = 100f;
-    protected ReactiveProperty<float> CurrentHp { get; private set; } = new ReactiveProperty<float>(0);
-    protected ReactiveProperty<float> CurrentArmor { get; private set; } = new ReactiveProperty<float>(0);
-    public float Health
+    public int level = 1;
+    public int maxHealth = 100;
+
+    protected ReactiveProperty<int> CurrentHp { get; private set; } = new ReactiveProperty<int>(0);
+    protected ReactiveProperty<int> CurrentArmor { get; private set; } = new ReactiveProperty<int>(0);
+    public int Health
     {
         get => CurrentHp.Value;
     }
-    public float Armor
+    public int Armor
     {
         get => CurrentArmor.Value;
     }
@@ -99,11 +101,37 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
-        CurrentHp.Value = maxHealth;
-        CurrentArmor.Value = maxHealth / 2;
+        // PlayerPrefs.DeleteAll();
+        if (PlayerPrefs.HasKey("currentLevel"))
+        {
+            level = PlayerPrefs.GetInt("currentLevel");
+        }
 
-        DieMenu menu = FindObjectOfType<DieMenu>();
+        if (PlayerPrefs.HasKey("currentHealth"))
+        {
+            CurrentHp.Value = PlayerPrefs.GetInt("currentHealth");
+        }
+        else
+        {
+            CurrentHp.Value = maxHealth;
+        }
+
+        if (PlayerPrefs.HasKey("currentArmor"))
+        {
+            CurrentArmor.Value = PlayerPrefs.GetInt("currentArmor");
+        }
+        else
+        {
+            CurrentArmor.Value = maxHealth / 2;
+        }
+
+        if (level > 1)
+        {
+            transform.position = new Vector3(174, 1, 78);
+        }
+        
+        anim = GetComponent<Animator>();
+        DieMenu dieMenu = FindObjectOfType<DieMenu>();
 
         this.UpdateAsObservable()
             .Select(_ => agent.remainingDistance <= 2.5f)
@@ -132,11 +160,11 @@ public class Player : MonoBehaviour
             .AddTo(this);
 
         CurrentHp
-            .Where((float hp) => hp < 0)
+            .Where((int hp) => hp < 0)
             .Take(1)
             .Do(_ => Die())
             .Delay(TimeSpan.FromMilliseconds(1100))
-            .Do(_ => menu.DiePause())
+            .Do(_ => dieMenu.DiePause())
             .Subscribe()
             .AddTo(this);
     }
@@ -161,7 +189,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float ad)
+    public void TakeDamage(int ad)
     {
         if (CurrentArmor.Value <= 0)
         {
@@ -173,7 +201,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Heal(float hp)
+    public void Heal(int hp)
     {
         if (CurrentHp.Value + hp > maxHealth)
         {
@@ -185,7 +213,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void AddArmor(float ap)
+    public void AddArmor(int ap)
     {
         if (CurrentArmor.Value + ap > maxHealth)
         {

@@ -11,7 +11,7 @@ public class HpBar : MonoBehaviour
     void Start()
     {
         gameObject.SetActive(false);
-        player = MainManager.Instance.player;
+        player = MainManager.Instance.Player;
         player.getTarget()
             .Do((Enemy enemy) => 
             {

@@ -86,7 +86,7 @@ public class ItemsManager : MonoBehaviour
     public void addItemToPlayer(int id)
     {
         Item item = itemList[id];
-        Player player = MainManager.Instance.player;
+        Player player = MainManager.Instance.Player;
 
         if (item.Type == ItemType.Potion)
         {
