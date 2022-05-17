@@ -70,7 +70,6 @@ public class Enemy : MonoBehaviour {
         IsAttacking
             .DistinctUntilChanged()
             .Do(v => Debug.Log(v))
-            .Do(v => Debug.Log(this.gameObject.activeSelf))
             .Do((bool isAttacking) => Attack(isAttacking))
             .Where((bool isAttacking) => isAttacking)
             .Select(_ => Observable.Interval(TimeSpan.FromMilliseconds(attackSpeed)).TakeUntil(IsAttacking.Where((bool flag) => !flag)))

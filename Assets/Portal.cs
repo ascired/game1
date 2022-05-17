@@ -10,9 +10,16 @@ public class Portal : MonoBehaviour
     public GameObject Effect;
 
     public bool IsReceiver = false;
+    public int Level = 0;
 
+    public bool IsInitialized = false;
     void Start()
     {
+        if (IsReceiver & Level > 0)
+        {
+            MainManager.Instance.portalLocations.Add(Level, transform.position);
+        }
+        IsInitialized = true;
 
         Observable.Interval(TimeSpan.FromMilliseconds(2000))
             .Where(_ => gameObject.activeSelf)
@@ -31,9 +38,11 @@ public class Portal : MonoBehaviour
         }
         else
         {
+            /*
             this.OnTriggerExitAsObservable()
                 .Subscribe(_ => gameObject.SetActive(false))
                 .AddTo(this);
+            */
         }
 
     }
@@ -41,12 +50,11 @@ public class Portal : MonoBehaviour
     public void MoveToReceiver()
     {
         Vector3 dest = ExitPortal.transform.position;
-        Player.moveToDest(dest);
-        Player.transform.position = dest;
+        Player.agent.Warp(dest);
 
         PlayerPrefs.SetInt("currentHealth", Player.Health);
         PlayerPrefs.SetInt("currentArmor", Player.Armor);
-        PlayerPrefs.SetInt("currentLevel", Player.level);
+        PlayerPrefs.SetInt("currentLevel", Player.Level);
     }
 
 }

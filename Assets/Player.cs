@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public NavMeshAgent agent;
     private Animator anim;
 
-    public int level = 1;
+    public int Level = 1;
     public int maxHealth = 100;
 
     protected ReactiveProperty<int> CurrentHp { get; private set; } = new ReactiveProperty<int>(0);
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
         // PlayerPrefs.DeleteAll();
         if (PlayerPrefs.HasKey("currentLevel"))
         {
-            level = PlayerPrefs.GetInt("currentLevel");
+            Level = PlayerPrefs.GetInt("currentLevel");
         }
 
         if (PlayerPrefs.HasKey("currentHealth"))
@@ -122,14 +122,25 @@ public class Player : MonoBehaviour
         }
         else
         {
-            CurrentArmor.Value = maxHealth / 2;
+            CurrentArmor.Value = 50;
         }
 
-        if (level > 1)
-        {
-            transform.position = new Vector3(174, 1, 78);
-        }
-        
+
+        MainManager.Instance.IsPortalsReady
+            .Take(1)
+            .Subscribe(_ => 
+            {
+                Vector3 pos;
+
+                Debug.Log(MainManager.Instance.portalLocations.TryGetValue(Level, out pos));
+                if (MainManager.Instance.portalLocations.TryGetValue(Level, out pos))
+                {
+                    Debug.Log(pos);
+                    agent.Warp(pos);
+                }
+            })
+            .AddTo(this);
+
         anim = GetComponent<Animator>();
         DieMenu dieMenu = FindObjectOfType<DieMenu>();
 
