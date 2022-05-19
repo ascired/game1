@@ -3,14 +3,18 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame() // Продолжить
+    public void PlayGame() 
     {
         UnitySceneManager.LoadScene("SampleScene");
     }
 
-    public void NewGame() // Новая игра
+    public void NewGame() 
     {
         PlayerPrefs.DeleteAll();
         PlayGame();
+    }
+
+    public void Exit(){
+        Application.Quit();
     }
 }
