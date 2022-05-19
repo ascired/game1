@@ -19,7 +19,7 @@ public class ClickToMove : MonoBehaviour {
         player = MainManager.Instance.Player;
         agent = player.agent;
 
-        raycastHitStream = this.UpdateAsObservable()
+        raycastHitStream = this.UpdateAsObservable()// создаем поток
             .Where(_ => Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             .Select<Unit, Ray>(_ => Camera.main.ScreenPointToRay(Input.mousePosition))
             .Where((Ray ray) => Physics.Raycast(ray.origin, ray.direction))
@@ -32,7 +32,7 @@ public class ClickToMove : MonoBehaviour {
                 return hit;
             });
 
-        raycastHitStream
+        raycastHitStream // подписка на поток
             .Subscribe((RaycastHit hit) => 
             {
                 NavMeshHit meshHit;
@@ -123,7 +123,7 @@ public class ClickToMove : MonoBehaviour {
                 player.transform.LookAt(chest.transform);
                 chest.Open();
             })
-            .AddTo(this);
+            .AddTo(this);// подписка уничтожается вместе с объектом
 
         // delayed enemy attack
         player.navComplete()

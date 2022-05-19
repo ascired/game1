@@ -8,7 +8,7 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance { get; private set; } // static singleton
     public Player Player;
-    public float attackDistanceThreshold = 30f;
+    public float attackDistanceThreshold = 30f;//расстояние атаки врага
 
     public Dictionary<int, Vector3> portalLocations = new Dictionary<int, Vector3>();
 

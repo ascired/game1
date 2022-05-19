@@ -20,22 +20,22 @@ public class Player : MonoBehaviour
 
     public int Level = 1;
     public int maxHealth = 100;
-
+    
     protected ReactiveProperty<int> CurrentHp { get; private set; } = new ReactiveProperty<int>(0);
     protected ReactiveProperty<int> CurrentArmor { get; private set; } = new ReactiveProperty<int>(0);
     public int Health
     {
-        get => CurrentHp.Value;
+        get => CurrentHp.Value;//последнее знаечение health в потоке
     }
     public int Armor
     {
         get => CurrentArmor.Value;
     }
 
-    private float _ad = 10f;
+    private float _ad = 25f;
     public float AttackDamage
     {
-        get => _ad;
+        get => _ad;// инкапсуляция
     }
 
     private int _as = 1000;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     private static Subject<Unit> navCompleteSubject;
     private static BehaviorSubject<Enemy> targetEnemySubject = new BehaviorSubject<Enemy>(null);
 
-    public void setNextPosition(Vector3 pos)
+    public void setNextPosition(Vector3 pos)//получает от click to move
     {
         targetEnemySubject.OnNext(null);
         stopAttackAnim();
@@ -126,17 +126,16 @@ public class Player : MonoBehaviour
         }
 
 
-        MainManager.Instance.IsPortalsReady
+        MainManager.Instance.IsPortalsReady 
             .Take(1)
             .Subscribe(_ => 
             {
                 Vector3 pos;
 
-                Debug.Log(MainManager.Instance.portalLocations.TryGetValue(Level, out pos));
                 if (MainManager.Instance.portalLocations.TryGetValue(Level, out pos))
                 {
                     Debug.Log(pos);
-                    agent.Warp(pos);
+                    agent.Warp(pos);// телепортирует персонажа на уровень на котором он сохранился
                 }
             })
             .AddTo(this);
@@ -180,7 +179,7 @@ public class Player : MonoBehaviour
             .AddTo(this);
     }
 
-    public void moveToDest(Vector3 dest)
+    public void moveToDest(Vector3 dest)// ускорение передвижения при атаке
     {
         agent.updateRotation = true;
         agent.destination = dest;
@@ -200,7 +199,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int ad)
+    public void TakeDamage(int ad)// отнимает здоровье если броня пустая
     {
         if (CurrentArmor.Value <= 0)
         {

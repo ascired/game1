@@ -27,13 +27,13 @@ public class Chest : MonoBehaviour
         int count = Random.Range(1, 4);
         Id = ItemsManager.Instance.createNewChest(1);
 
-        this.OnTriggerExitAsObservable()
+        this.OnTriggerExitAsObservable() //отошел
             .Where(_ => ChestPanel.activeSelf)
             .Do(other => Debug.Log(other))
             .Subscribe(_ => Close())
             .AddTo(this);
 
-        this.UpdateAsObservable()
+        this.UpdateAsObservable() //закрытие сундука
             .Select(_ => ChestPanel.activeSelf)
             .DistinctUntilChanged()
             .Where(isActive => !isActive)

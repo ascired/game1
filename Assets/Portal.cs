@@ -36,14 +36,7 @@ public class Portal : MonoBehaviour
                 .Subscribe(_ => nextMenu.FinishPause(MoveToReceiver))
                 .AddTo(this);
         }
-        else
-        {
-            /*
-            this.OnTriggerExitAsObservable()
-                .Subscribe(_ => gameObject.SetActive(false))
-                .AddTo(this);
-            */
-        }
+       
 
     }
 
