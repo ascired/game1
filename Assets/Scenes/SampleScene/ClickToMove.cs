@@ -44,6 +44,7 @@ public class ClickToMove : MonoBehaviour {
                 // chest click
                 if (chest != null)
                 {
+                    attackEnemy.Value = null;
                     newDest = hit.collider.gameObject.transform.position
                     + Vector3.Scale(
                         hit.collider.gameObject.transform.forward,

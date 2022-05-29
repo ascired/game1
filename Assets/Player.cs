@@ -101,7 +101,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // PlayerPrefs.DeleteAll();
         if (PlayerPrefs.HasKey("currentLevel"))
         {
             Level = PlayerPrefs.GetInt("currentLevel");
@@ -263,6 +262,8 @@ public class Player : MonoBehaviour
     }
     public void Die()
     {
+        // delete all saved data on player death
+        PlayerPrefs.DeleteAll();
         anim.SetBool(AnimType.Die.ToString(), true);
     }
 }
