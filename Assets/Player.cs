@@ -254,6 +254,7 @@ public class Player : MonoBehaviour
         enemy.IsUnderAttack.Value = true;
         anim.SetBool(AnimType.Attack.ToString(), true);
     }
+    
     public void stopAttackAnim()
     {
         anim.SetBool(AnimType.Attack.ToString(), false);
