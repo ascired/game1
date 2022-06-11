@@ -169,7 +169,7 @@ public class Player : MonoBehaviour
             .AddTo(this);
 
         CurrentHp
-            .Where((int hp) => hp < 0)
+            .Where((int hp) => hp <= 0)
             .Take(1)
             .Do(_ => Die())
             .Delay(TimeSpan.FromMilliseconds(1100))
