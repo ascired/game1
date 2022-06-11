@@ -41,10 +41,12 @@ public class ClickToMove : MonoBehaviour {
                 Enemy enemy = hit.transform.GetComponent<Enemy>();
                 Portal portal = hit.transform.GetComponent<Portal>();
 
+                attackEnemy.Value = null;
+                openChest.Value = null;
+
                 // chest click
                 if (chest != null)
                 {
-                    attackEnemy.Value = null;
                     newDest = hit.collider.gameObject.transform.position
                     + Vector3.Scale(
                         hit.collider.gameObject.transform.forward,
@@ -54,7 +56,7 @@ public class ClickToMove : MonoBehaviour {
                     newDest.y = agent.destination.y;
 
                     // chest is far away schedule chest open
-                    if (Vector3.Distance(newDest, agent.destination) > 5f)
+                    if (Vector3.Distance(newDest, player.transform.position) > 5f)
                     {
                         player.setNextPosition(newDest);
                         openChest.Value = chest;
@@ -77,8 +79,10 @@ public class ClickToMove : MonoBehaviour {
 
                     newDest.y = agent.destination.y;
 
+                    Debug.DrawLine(newDest, new Vector3(newDest.x, 50, newDest.z), Color.white, 60f);
+
                     // enemy is far away schedule attack
-                    if (Vector3.Distance(newDest, agent.destination) > 5f)
+                    if (Vector3.Distance(newDest, player.transform.position) > 5f)
                     {
                         player.setAttackTarget(enemy, newDest);
                         attackEnemy.Value = enemy;
@@ -94,8 +98,6 @@ public class ClickToMove : MonoBehaviour {
                 if (portal != null)
                 {
                     newDest = new Vector3(portal.gameObject.transform.position.x, 0.5f, portal.gameObject.transform.position.z);
-                    openChest.Value = null;
-                    attackEnemy.Value = null;
                     player.setNextPosition(newDest);
 
                     return;
@@ -106,8 +108,6 @@ public class ClickToMove : MonoBehaviour {
                     if (Vector3.Distance(hit.point, agent.destination) > 1f)
                     {
                         newDest = hit.point;
-                        openChest.Value = null;
-                        attackEnemy.Value = null;
                         player.setNextPosition(newDest);
                     }
                 }

@@ -10,24 +10,34 @@ public class PatrolBehaviaour : StateMachineBehaviour
     List<Transform> points = new List<Transform>();
     NavMeshAgent agent;
     Transform player;
+    Enemy enemy;
     float chaseRange = 30;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer = 0;
-        GameObject[] pointsObject = GameObject.FindGameObjectsWithTag("Points");
-        foreach (GameObject t in pointsObject){
-            points.Add(t.transform);
-        }
-        
-        agent = animator.GetComponent<NavMeshAgent>();
-        agent.SetDestination(points[0].position);
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        enemy = animator.gameObject.GetComponent<Enemy>();
+
+        foreach (GameObject t in enemy.points)
+        {
+            points.Add(t.transform);
+        }
+
+        agent = animator.GetComponent<NavMeshAgent>();
+        agent.SetDestination(points[0].position);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (enemy.IsDead.Value)
+        {
+            animator.SetBool("isPotroling", false);
+            animator.SetBool("isChasing", false);
+            return;
+        }
+
         if (agent.remainingDistance <= 1f){
             agent.SetDestination(points[Random.Range(0, points.Count)].position);
         }
@@ -46,6 +56,9 @@ public class PatrolBehaviaour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.SetDestination(agent.transform.position);
+        if (agent.enabled)
+        {
+            agent.SetDestination(enemy.transform.position);
+        }
     }
 }
