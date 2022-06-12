@@ -33,6 +33,7 @@ public class Portal : MonoBehaviour
 
             this.OnTriggerEnterAsObservable()
                 .Where(_ => !IsReceiver)
+                .Do(_ => Debug.Log("Enter trigger"))
                 .Subscribe(_ => nextMenu.FinishPause(MoveToReceiver))
                 .AddTo(this);
         }

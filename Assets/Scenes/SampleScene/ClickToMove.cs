@@ -99,7 +99,7 @@ public class ClickToMove : MonoBehaviour {
                 {
                     newDest = new Vector3(portal.gameObject.transform.position.x, 0.5f, portal.gameObject.transform.position.z);
                     player.setNextPosition(newDest);
-
+                    Debug.Log("portal clicked");
                     return;
                 }
 
