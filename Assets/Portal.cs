@@ -30,16 +30,30 @@ public class Portal : MonoBehaviour
         {
             Player = MainManager.Instance.Player;
             NextMenu nextMenu = FindObjectOfType<NextMenu>();
+            FinalMenu finalMenu = FindObjectOfType<FinalMenu>();
 
             this.OnTriggerEnterAsObservable()
                 .Where(_ => !IsReceiver)
                 .Do(_ => Debug.Log("Enter trigger"))
-                .Subscribe(_ => nextMenu.FinishPause(MoveToReceiver))
+                .Subscribe(_ =>
+                {
+                    if (Level == 999)
+                    {
+                        finalMenu.FinishPause(MoveToReceiver);
+                    }
+                    else
+                    {
+                        nextMenu.FinishPause(MoveToReceiver);
+                    }
+                })
                 .AddTo(this);
         }
-       
+
 
     }
+
+
+
 
     public void MoveToReceiver()
     {
